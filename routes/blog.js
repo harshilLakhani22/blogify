@@ -1,15 +1,15 @@
-const { Router } = require("express");
-const multer = require("multer");
-const path = require("path");
+import { Router } from "express";
+import multer, { diskStorage } from "multer";
+import { resolve } from "path";
 
-const Blog = require("../models/blog")
-const Comment = require("../models/comments")
+import Blog from "../models/blog";
+import Comment from "../models/comments";
 
 const router = Router();
 
-const storage = multer.diskStorage({
+const storage = diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.resolve(`./public/uploads/`));
+    cb(null, resolve(`./public/uploads/`));
   },
   filename: function (req, file, cb) {
     const filename = `${Date.now()}-${file.originalname}`;
@@ -55,4 +55,4 @@ router.post("/", upload.single('coverImage'), async (req, res) => {
   return res.redirect(`/blog/${blog._id}`);
 });
 
-module.exports = router;
+export default router;
