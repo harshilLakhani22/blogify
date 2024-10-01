@@ -1,5 +1,5 @@
-const { Router } = require("express");
-const User = require("../models/user")
+import { Router } from "express";
+import User from "../models/user";
 
 const router = Router();
 
@@ -38,4 +38,4 @@ router.get("/logout", (req, res) => {
     res.clearCookie("token").redirect("/")
 })
 
-module.exports = router;
+export default router;

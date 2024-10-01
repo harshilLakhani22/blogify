@@ -5,10 +5,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 
-const Blog = require("./models/blog");
+const Blog = require("./models/blog").default;
 
-const userRoute = require("./routes/user");
-const blogRoute = require("./routes/blog");
+const userRoute = require("./routes/user").default;
+const blogRoute = require("./routes/blog").default;
 
 const { checkForAuthenticationCookie } = require("./middleware/authentication");
 

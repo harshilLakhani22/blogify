@@ -1,4 +1,4 @@
-const JWT = require("jsonwebtoken")
+import { sign, verify } from "jsonwebtoken";
 
 const secret = "H@rrY#2264";
 
@@ -9,18 +9,18 @@ function createTokenForUser(user){
         profileImageURL : user.profileImageURL,
         role : user.role,
     };
-    const token = JWT.sign(payload, secret);
+    const token = sign(payload, secret);
 
     return token;
 }
 
 function validateToken(token){
-    const payload = JWT.verify(token, secret);
+    const payload = verify(token, secret);
 
     return payload;
 }
 
-module.exports = {
+export default {
     createTokenForUser,
     validateToken,
 }
